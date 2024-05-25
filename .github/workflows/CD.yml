@@ -7,7 +7,7 @@ on:
     branches: [ main ] # main branch로 push 될 때 실행됩니다.
 
 env:
-  S3_BUCKET_NAME: now-sopt-bucket
+  S3_BUCKET_NAME: nowsopt-bucket98
 
 jobs:
   build:
@@ -30,8 +30,7 @@ jobs:
     - name: make application.yml
       run: |
         ## create application.yml
-        mkdir ./src/main/resources
-        cd ./src/main/resources
+        cd ./demo/src/main/resources
 
         touch ./application.yml
 
@@ -41,16 +40,16 @@ jobs:
       shell: bash
         
     - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      run: chmod +x demo/gradlew
       
     - name: Build with Gradle # 실제 application build(-x 옵션을 통해 test는 제외)
-      run: ./gradlew build -x test
+      run: ./demo/gradlew build -x test
       
     - name: Make Directory
       run: mkdir -p deploy
       
     - name: Copy Jar
-      run: cp ./build/libs/*.jar ./deploy
+      run: cp build/libs/*.jar ./deploy
     
     - name: Copy appspec.yml
       run: cp appspec.yml ./deploy
