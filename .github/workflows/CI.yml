@@ -22,20 +22,20 @@ jobs:
     - name: create application.yml
       run: |
         ## create application.yml
-        cd .demo/src/main/resources
+        cd ./demo/src/main/resources
 
         # application.yml 파일 생성
-        touch .demo/application.yml
+        touch ./demo/application.yml
 
         # GitHub-Actions 에서 설정한 값을 application.yml 파일에 쓰기
-        echo "${{ secrets.CI_APPLICATION }}" >> .demo/application.yml
+        echo "${{ secrets.CI_APPLICATION }}" >> ./demo/application.yml
         
         # application.yml 파일 확인
-        cat .demo/application.yml
+        cat ./demo/application.yml
       shell: bash
       
     - name: build
       run: |
           chmod +x ./demo/gradlew
-          .demo/gradlew build -x test
+          ./demo/gradlew build -x test
       shell: bash
